@@ -15,12 +15,10 @@ use Ticker\Contract\HasHooks;
 use Ticker\Util\TemplateLoader;
 
 /**
- * Renders a live sale countdown timer (and optional low-stock scarcity message)
- * on single product pages.
+ * Renders a live sale countdown timer on single product pages.
  *
  * The end timestamp is resolved server-side from one of:
  *  - the WooCommerce sale_price_dates_to (per product),
- *  - a per-product campaign end date (post meta `_ticker_campaign_end`),
  *  - a global campaign end date from settings.
  *
  * The browser only formats the remaining time; the source of truth is the
@@ -31,8 +29,6 @@ use Ticker\Util\TemplateLoader;
 final class CountdownService implements HasHooks {
 
 	private const OPTION = 'ticker_settings';
-
-	private const PRODUCT_META = '_ticker_campaign_end';
 
 	/**
 	 * Constructor.
@@ -128,15 +124,11 @@ final class CountdownService implements HasHooks {
 
 		$end_ts = $this->resolve_end_timestamp( $product, $settings );
 
-		$scarcity = $this->resolve_scarcity( $product, $settings );
-
-		// Nothing to show: no live countdown and no scarcity message. Hide rather
-		// than render an empty shell.
-		if ( ( null === $end_ts || $end_ts <= time() ) && null === $scarcity ) {
-			// Still render an expired state if a countdown was configured.
-			if ( null === $end_ts ) {
-				return;
-			}
+		// Nothing to show: no countdown configured. Hide rather than render an
+		// empty shell. A configured-but-expired countdown still renders its
+		// friendly expired message.
+		if ( null === $end_ts ) {
+			return;
 		}
 
 		wp_enqueue_style( 'ticker-countdown' );
@@ -160,7 +152,6 @@ final class CountdownService implements HasHooks {
 				'format'          => $format,
 				'heading'         => (string) ( $settings['heading'] ?? '' ),
 				'expired_message' => $expired_message,
-				'scarcity'        => $scarcity,
 				'now'             => time(),
 			),
 		);
@@ -184,29 +175,10 @@ final class CountdownService implements HasHooks {
 			$ts = $this->sale_end_timestamp( $product );
 		}
 
-		// Per-product campaign override (works for both sources, and as a sale fallback).
-		if ( null === $ts ) {
-			$product_end = $this->product_campaign_timestamp( $product );
-			if ( null !== $product_end ) {
-				$ts = $product_end;
-			}
-		}
-
 		// Global campaign date as a final fallback / primary for 'campaign' source.
 		if ( null === $ts ) {
 			$ts = $this->global_campaign_timestamp( $settings );
 		}
-
-		/**
-		 * Filter the resolved countdown end timestamp for a product.
-		 *
-		 * PRO uses this to inject scheduled/recurring campaign windows.
-		 *
-		 * @param int|null             $ts       Resolved UTC timestamp, or null.
-		 * @param \WC_Product          $product  The product.
-		 * @param array<string, mixed> $settings Plugin settings.
-		 */
-		$ts = apply_filters( 'ticker/end_timestamp', $ts, $product, $settings );
 
 		return is_int( $ts ) ? $ts : null;
 	}
@@ -230,24 +202,6 @@ final class CountdownService implements HasHooks {
 		}
 
 		return null;
-	}
-
-	/**
-	 * Read a per-product campaign end date from post meta, or null.
-	 *
-	 * Stored as a `Y-m-d\TH:i` string in the store timezone.
-	 *
-	 * @param \WC_Product $product The product.
-	 * @return int|null
-	 */
-	private function product_campaign_timestamp( \WC_Product $product ): ?int {
-		$raw = get_post_meta( $product->get_id(), self::PRODUCT_META, true );
-
-		if ( ! is_string( $raw ) || '' === $raw ) {
-			return null;
-		}
-
-		return $this->local_string_to_timestamp( $raw );
 	}
 
 	/**
@@ -290,48 +244,6 @@ final class CountdownService implements HasHooks {
 		} catch ( \Exception $e ) {
 			return null;
 		}
-	}
-
-	/**
-	 * Resolve the scarcity message data for a product, or null when disabled
-	 * or not applicable.
-	 *
-	 * @param \WC_Product          $product  The product.
-	 * @param array<string, mixed> $settings Plugin settings.
-	 * @return array{stock: int, message: string}|null
-	 */
-	private function resolve_scarcity( \WC_Product $product, array $settings ): ?array {
-		if ( empty( $settings['scarcity_enabled'] ) ) {
-			return null;
-		}
-
-		if ( ! $product->managing_stock() || ! $product->is_in_stock() ) {
-			return null;
-		}
-
-		$stock = $product->get_stock_quantity();
-
-		if ( ! is_int( $stock ) && ! is_numeric( $stock ) ) {
-			return null;
-		}
-
-		$stock     = (int) $stock;
-		$threshold = max( 1, (int) ( $settings['scarcity_threshold'] ?? 5 ) );
-
-		if ( $stock <= 0 || $stock > $threshold ) {
-			return null;
-		}
-
-		$message = sprintf(
-			/* translators: %d: number of items left in stock. */
-			_n( 'Only %d left in stock!', 'Only %d left in stock!', $stock, 'ticker' ),
-			$stock,
-		);
-
-		return array(
-			'stock'   => $stock,
-			'message' => $message,
-		);
 	}
 
 	/**

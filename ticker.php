@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Ticker - Sales Countdown Timer for WooCommerce
  * Plugin URI:        https://plogins.com/ticker/
- * Description:        Show a live sale countdown timer and optional stock scarcity message on product pages to create urgency.
+ * Description:        Show a live sale countdown timer on WooCommerce product pages to create urgency and turn browsers into buyers.
  * Version:           0.1.0
  * Requires at least: 6.5
  * Requires PHP:      8.1

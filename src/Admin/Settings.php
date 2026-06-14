@@ -66,36 +66,6 @@ final class Settings implements HasHooks {
 			array(),
 			\Ticker\VERSION,
 		);
-
-		wp_enqueue_script(
-			'ticker-admin',
-			\Ticker\Plugin::instance()->url( 'assets/js/admin-ticker.js' ),
-			array(),
-			\Ticker\VERSION,
-			array(
-				'in_footer' => true,
-				'strategy'  => 'defer',
-			),
-		);
-	}
-
-	/**
-	 * Render an accessible inline help affordance ("?") paired with a tooltip.
-	 *
-	 * @param string $id   Unique tooltip id (also the popover target).
-	 * @param string $text Help text.
-	 */
-	private function help_icon( string $id, string $text ): void {
-		printf(
-			'<button type="button" class="ticker-help" popovertarget="%1$s" aria-label="%2$s">?</button>',
-			esc_attr( $id ),
-			esc_attr__( 'More information', 'ticker' ),
-		);
-		printf(
-			'<span id="%1$s" class="ticker-tip" role="tooltip" popover="auto">%2$s</span>',
-			esc_attr( $id ),
-			esc_html( $text ),
-		);
 	}
 
 	/**
@@ -157,7 +127,7 @@ final class Settings implements HasHooks {
 				echo '<div class="ticker-settings__intro">';
 				echo '<h2>' . esc_html__( 'Create urgency with a live countdown', 'ticker' ) . '</h2>';
 				echo '<p>' . esc_html__(
-					'Show a ticking countdown to the end of a sale on your product pages, plus an optional "Only N left" scarcity nudge. The timer is calculated on the server and counted down in the browser — no layout shift, no jQuery.',
+					'Show a ticking countdown to the end of a sale on your product pages. The timer is calculated on the server and counted down in the browser — no layout shift, no jQuery.',
 					'ticker',
 				) . '</p>';
 				echo '</div>';
@@ -166,15 +136,13 @@ final class Settings implements HasHooks {
 		);
 
 		$fields = array(
-			'enabled'            => __( 'Enable countdown', 'ticker' ),
-			'source'             => __( 'Countdown source', 'ticker' ),
-			'campaign_end'       => __( 'Campaign end date', 'ticker' ),
-			'heading'            => __( 'Heading', 'ticker' ),
-			'format'             => __( 'Time format', 'ticker' ),
-			'placement'          => __( 'Placement', 'ticker' ),
-			'expired_message'    => __( 'Expired message', 'ticker' ),
-			'scarcity_enabled'   => __( 'Stock scarcity message', 'ticker' ),
-			'scarcity_threshold' => __( 'Scarcity threshold', 'ticker' ),
+			'enabled'         => __( 'Enable countdown', 'ticker' ),
+			'source'          => __( 'Countdown source', 'ticker' ),
+			'campaign_end'    => __( 'Campaign end date', 'ticker' ),
+			'heading'         => __( 'Heading', 'ticker' ),
+			'format'          => __( 'Time format', 'ticker' ),
+			'placement'       => __( 'Placement', 'ticker' ),
+			'expired_message' => __( 'Expired message', 'ticker' ),
 		);
 
 		foreach ( $fields as $id => $label ) {
@@ -212,8 +180,8 @@ final class Settings implements HasHooks {
 			<input type="checkbox" id="ticker_enabled" name="<?php echo esc_attr( self::OPTION ); ?>[enabled]" value="1" <?php checked( $checked, true ); ?> />
 			<?php esc_html_e( 'Show the sale countdown timer on single product pages.', 'ticker' ); ?>
 		</label>
+		<p class="description"><?php esc_html_e( 'Master switch. When off, no countdown is rendered anywhere.', 'ticker' ); ?></p>
 		<?php
-		$this->help_icon( 'ticker-tip-enabled', __( 'Master switch. When off, no countdown or scarcity message is rendered anywhere.', 'ticker' ) );
 	}
 
 	/**
@@ -227,10 +195,7 @@ final class Settings implements HasHooks {
 				<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $current, $value ); ?>><?php echo esc_html( $label ); ?></option>
 			<?php endforeach; ?>
 		</select>
-		<?php
-		$this->help_icon( 'ticker-tip-source', __( 'Use the native WooCommerce "Sale price dates" of each product, or count down to one fixed campaign date for the whole store. A per-product campaign date always takes priority when set.', 'ticker' ) );
-		?>
-		<p class="description"><?php esc_html_e( 'Where the end time comes from. The sale date is read per product; the campaign date applies store-wide.', 'ticker' ); ?></p>
+		<p class="description"><?php esc_html_e( 'Where the end time comes from. The sale date is read per product; the campaign date applies store-wide and is also used as a fallback when a product has no sale end date.', 'ticker' ); ?></p>
 		<?php
 	}
 
@@ -246,9 +211,6 @@ final class Settings implements HasHooks {
 			name="<?php echo esc_attr( self::OPTION ); ?>[campaign_end]"
 			value="<?php echo esc_attr( $value ); ?>"
 		/>
-		<?php
-		$this->help_icon( 'ticker-tip-campaign', __( 'The store-wide campaign end, in your site timezone. Used when "Fixed campaign end date" is selected, or as a fallback when a product has no sale end date.', 'ticker' ) );
-		?>
 		<p class="description">
 			<?php
 			printf(
@@ -275,8 +237,8 @@ final class Settings implements HasHooks {
 			class="regular-text"
 			placeholder="<?php esc_attr_e( 'e.g. Hurry — offer ends soon!', 'ticker' ); ?>"
 		/>
+		<p class="description"><?php esc_html_e( 'Optional copy shown directly above the timer. Leave blank to show just the clock.', 'ticker' ); ?></p>
 		<?php
-		$this->help_icon( 'ticker-tip-heading', __( 'Optional copy shown directly above the timer. Leave blank to show just the clock.', 'ticker' ) );
 	}
 
 	/**
@@ -290,8 +252,8 @@ final class Settings implements HasHooks {
 				<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $current, $value ); ?>><?php echo esc_html( $label ); ?></option>
 			<?php endforeach; ?>
 		</select>
+		<p class="description"><?php esc_html_e( 'How the remaining time is displayed. Compact hides seconds for a calmer look on long campaigns.', 'ticker' ); ?></p>
 		<?php
-		$this->help_icon( 'ticker-tip-format', __( 'How the remaining time is displayed. Compact hides seconds for a calmer look on long campaigns.', 'ticker' ) );
 	}
 
 	/**
@@ -305,8 +267,8 @@ final class Settings implements HasHooks {
 				<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $current, $value ); ?>><?php echo esc_html( $label ); ?></option>
 			<?php endforeach; ?>
 		</select>
+		<p class="description"><?php esc_html_e( 'Where the timer is inserted on the single product page.', 'ticker' ); ?></p>
 		<?php
-		$this->help_icon( 'ticker-tip-placement', __( 'Where the timer is inserted on the single product page.', 'ticker' ) );
 	}
 
 	/**
@@ -323,42 +285,8 @@ final class Settings implements HasHooks {
 			class="regular-text"
 			placeholder="<?php esc_attr_e( 'This sale has ended.', 'ticker' ); ?>"
 		/>
+		<p class="description"><?php esc_html_e( 'Shown in place of the clock once the countdown reaches zero. Leave blank for the default message.', 'ticker' ); ?></p>
 		<?php
-		$this->help_icon( 'ticker-tip-expired', __( 'Shown in place of the clock once the countdown reaches zero. Leave blank for the default message.', 'ticker' ) );
-	}
-
-	/**
-	 * Render the scarcity enabled checkbox.
-	 */
-	public function render_scarcity_enabled(): void {
-		$checked = (bool) $this->value( 'scarcity_enabled' );
-		?>
-		<label for="ticker_scarcity_enabled">
-			<input type="checkbox" id="ticker_scarcity_enabled" name="<?php echo esc_attr( self::OPTION ); ?>[scarcity_enabled]" value="1" <?php checked( $checked, true ); ?> />
-			<?php esc_html_e( 'Show an "Only N left in stock" message when stock is low.', 'ticker' ); ?>
-		</label>
-		<?php
-		$this->help_icon( 'ticker-tip-scarcity', __( 'Only shows for products that track stock and whose remaining quantity is at or below the threshold below.', 'ticker' ) );
-	}
-
-	/**
-	 * Render the scarcity threshold field.
-	 */
-	public function render_scarcity_threshold(): void {
-		$value = (int) $this->value( 'scarcity_threshold' );
-		?>
-		<input
-			type="number"
-			id="ticker_scarcity_threshold"
-			name="<?php echo esc_attr( self::OPTION ); ?>[scarcity_threshold]"
-			value="<?php echo esc_attr( (string) $value ); ?>"
-			min="1"
-			max="999"
-			step="1"
-			class="small-text"
-		/>
-		<?php
-		$this->help_icon( 'ticker-tip-threshold', __( 'The scarcity message appears when remaining stock is this number or fewer (e.g. 5 means it shows at 5, 4, 3, 2 or 1 left).', 'ticker' ) );
 	}
 
 	/**
@@ -414,24 +342,14 @@ final class Settings implements HasHooks {
 			$campaign_end = '';
 		}
 
-		$threshold = absint( $raw['scarcity_threshold'] ?? 5 );
-		if ( $threshold < 1 ) {
-			$threshold = 1;
-		}
-		if ( $threshold > 999 ) {
-			$threshold = 999;
-		}
-
 		return array(
-			'enabled'            => ! empty( $raw['enabled'] ),
-			'source'             => $source,
-			'campaign_end'       => $campaign_end,
-			'heading'            => sanitize_text_field( (string) ( $raw['heading'] ?? '' ) ),
-			'format'             => $format,
-			'placement'          => $placement,
-			'expired_message'    => sanitize_text_field( (string) ( $raw['expired_message'] ?? '' ) ),
-			'scarcity_enabled'   => ! empty( $raw['scarcity_enabled'] ),
-			'scarcity_threshold' => $threshold,
+			'enabled'         => ! empty( $raw['enabled'] ),
+			'source'          => $source,
+			'campaign_end'    => $campaign_end,
+			'heading'         => sanitize_text_field( (string) ( $raw['heading'] ?? '' ) ),
+			'format'          => $format,
+			'placement'       => $placement,
+			'expired_message' => sanitize_text_field( (string) ( $raw['expired_message'] ?? '' ) ),
 		);
 	}
 }

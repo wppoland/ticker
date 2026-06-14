@@ -6,7 +6,6 @@
 .ticker {
 	/* Themeable tokens — override in your theme to restyle. */
 	--ticker-accent: #dc2626;
-	--ticker-accent-soft: rgba(220, 38, 38, 0.1);
 	--ticker-fg: #1f2933;
 	--ticker-muted: #6b7280;
 	--ticker-surface: rgba(220, 38, 38, 0.06);
@@ -96,43 +95,6 @@
 .ticker__countdown.is-expired {
 	background: rgba(0, 0, 0, 0.04);
 	border-color: rgba(0, 0, 0, 0.12);
-}
-
-.ticker__scarcity {
-	display: flex;
-	align-items: center;
-	gap: 0.5em;
-	margin: 0.6em 0 0;
-	font-weight: 600;
-	color: var(--ticker-accent);
-}
-
-.ticker__scarcity-dot {
-	display: inline-block;
-	inline-size: 0.6em;
-	block-size: 0.6em;
-	border-radius: 50%;
-	background: var(--ticker-accent);
-	box-shadow: 0 0 0 0 var(--ticker-accent-soft);
-	animation: ticker-pulse 2s ease-out infinite;
-}
-
-@keyframes ticker-pulse {
-	0% {
-		box-shadow: 0 0 0 0 var(--ticker-accent-soft);
-	}
-	70% {
-		box-shadow: 0 0 0 0.6em transparent;
-	}
-	100% {
-		box-shadow: 0 0 0 0 transparent;
-	}
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.ticker__scarcity-dot {
-		animation: none;
-	}
 }
 
 /* Dark theme awareness — opt in via the storefront's own scheme. */

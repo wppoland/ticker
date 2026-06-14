@@ -1,11 +1,10 @@
 # Ticker
 
-Ticker adds a live, accessible sale countdown timer to your WooCommerce product pages, plus an optional "Only N left in stock" scarcity message — a simple way to add urgency and turn browsers into buyers.
+Ticker adds a live, accessible sale countdown timer to your WooCommerce product pages — a simple way to add urgency and turn browsers into buyers.
 
 ## Features
 
 - Live countdown to a product's native WooCommerce sale end date, or to a store-wide campaign end date you set.
-- Optional low-stock scarcity message with a configurable threshold, shown only for products that track inventory.
 - End time is resolved on the server, so a visitor's wrong clock can never change the actual end moment; the browser only formats the remaining time.
 - Choose where the timer appears and pick from three display formats, with an optional heading and a customisable expired message.
 - Accessible `role="timer"` with a polite live region; no jQuery and no layout shift. Dark-mode and reduced-motion aware.
