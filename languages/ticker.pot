@@ -1,0 +1,235 @@
+# Copyright (C) 2026 WPPoland
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Ticker - Sales Countdown Timer for WooCommerce 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ticker\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-06-14T13:42:54+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: ticker\n"
+
+#. Plugin Name of the plugin
+#: ticker.php
+msgid "Ticker - Sales Countdown Timer for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: ticker.php
+msgid "https://plogins.com/ticker/"
+msgstr ""
+
+#. Description of the plugin
+#: ticker.php
+msgid "Show a live sale countdown timer and optional stock scarcity message on product pages to create urgency."
+msgstr ""
+
+#. Author of the plugin
+#: ticker.php
+msgid "WPPoland"
+msgstr ""
+
+#. Author URI of the plugin
+#: ticker.php
+msgid "https://plogins.com/"
+msgstr ""
+
+#: src/Admin/Settings.php:45
+msgid "Ticker Settings"
+msgstr ""
+
+#: src/Admin/Settings.php:46
+msgid "Ticker"
+msgstr ""
+
+#: src/Admin/Settings.php:92
+msgid "More information"
+msgstr ""
+
+#: src/Admin/Settings.php:108
+msgid "WooCommerce sale end date"
+msgstr ""
+
+#: src/Admin/Settings.php:109
+msgid "Fixed campaign end date"
+msgstr ""
+
+#: src/Admin/Settings.php:120
+msgid "Days : Hours : Minutes : Seconds"
+msgstr ""
+
+#: src/Admin/Settings.php:121
+msgid "Hours : Minutes : Seconds"
+msgstr ""
+
+#: src/Admin/Settings.php:122
+msgid "Hours : Minutes (compact)"
+msgstr ""
+
+#: src/Admin/Settings.php:133
+msgid "Product summary (below price)"
+msgstr ""
+
+#: src/Admin/Settings.php:134
+msgid "Before the add-to-cart form"
+msgstr ""
+
+#: src/Admin/Settings.php:135
+msgid "After the add-to-cart form"
+msgstr ""
+
+#: src/Admin/Settings.php:136
+msgid "Product meta area"
+msgstr ""
+
+#: src/Admin/Settings.php:155
+msgid "Sale Countdown Timer"
+msgstr ""
+
+#: src/Admin/Settings.php:158
+msgid "Create urgency with a live countdown"
+msgstr ""
+
+#: src/Admin/Settings.php:159
+msgid "Show a ticking countdown to the end of a sale on your product pages, plus an optional \"Only N left\" scarcity nudge. The timer is calculated on the server and counted down in the browser — no layout shift, no jQuery."
+msgstr ""
+
+#: src/Admin/Settings.php:169
+msgid "Enable countdown"
+msgstr ""
+
+#: src/Admin/Settings.php:170
+msgid "Countdown source"
+msgstr ""
+
+#: src/Admin/Settings.php:171
+msgid "Campaign end date"
+msgstr ""
+
+#: src/Admin/Settings.php:172
+msgid "Heading"
+msgstr ""
+
+#: src/Admin/Settings.php:173
+msgid "Time format"
+msgstr ""
+
+#: src/Admin/Settings.php:174
+msgid "Placement"
+msgstr ""
+
+#: src/Admin/Settings.php:175
+msgid "Expired message"
+msgstr ""
+
+#: src/Admin/Settings.php:176
+msgid "Stock scarcity message"
+msgstr ""
+
+#: src/Admin/Settings.php:177
+msgid "Scarcity threshold"
+msgstr ""
+
+#: src/Admin/Settings.php:213
+msgid "Show the sale countdown timer on single product pages."
+msgstr ""
+
+#: src/Admin/Settings.php:216
+msgid "Master switch. When off, no countdown or scarcity message is rendered anywhere."
+msgstr ""
+
+#: src/Admin/Settings.php:231
+msgid "Use the native WooCommerce \"Sale price dates\" of each product, or count down to one fixed campaign date for the whole store. A per-product campaign date always takes priority when set."
+msgstr ""
+
+#: src/Admin/Settings.php:233
+msgid "Where the end time comes from. The sale date is read per product; the campaign date applies store-wide."
+msgstr ""
+
+#: src/Admin/Settings.php:250
+msgid "The store-wide campaign end, in your site timezone. Used when \"Fixed campaign end date\" is selected, or as a fallback when a product has no sale end date."
+msgstr ""
+
+#. translators: %s: the site timezone string, e.g. Europe/Warsaw or UTC+2.
+#: src/Admin/Settings.php:256
+#, php-format
+msgid "Interpreted in your site timezone (%s)."
+msgstr ""
+
+#: src/Admin/Settings.php:276
+msgid "e.g. Hurry — offer ends soon!"
+msgstr ""
+
+#: src/Admin/Settings.php:279
+msgid "Optional copy shown directly above the timer. Leave blank to show just the clock."
+msgstr ""
+
+#: src/Admin/Settings.php:294
+msgid "How the remaining time is displayed. Compact hides seconds for a calmer look on long campaigns."
+msgstr ""
+
+#: src/Admin/Settings.php:309
+msgid "Where the timer is inserted on the single product page."
+msgstr ""
+
+#: src/Admin/Settings.php:324
+#: src/Service/CountdownService.php:152
+msgid "This sale has ended."
+msgstr ""
+
+#: src/Admin/Settings.php:327
+msgid "Shown in place of the clock once the countdown reaches zero. Leave blank for the default message."
+msgstr ""
+
+#: src/Admin/Settings.php:338
+msgid "Show an \"Only N left in stock\" message when stock is low."
+msgstr ""
+
+#: src/Admin/Settings.php:341
+msgid "Only shows for products that track stock and whose remaining quantity is at or below the threshold below."
+msgstr ""
+
+#: src/Admin/Settings.php:361
+msgid "The scarcity message appears when remaining stock is this number or fewer (e.g. 5 means it shows at 5, 4, 3, 2 or 1 left)."
+msgstr ""
+
+#. translators: %d: number of items left in stock.
+#: src/Service/CountdownService.php:327
+#, php-format
+msgid "Only %d left in stock!"
+msgid_plural "Only %d left in stock!"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/single-product/countdown.php:35
+msgid "Sale countdown"
+msgstr ""
+
+#: templates/single-product/countdown.php:52
+msgid "Sale ends in"
+msgstr ""
+
+#: templates/single-product/countdown.php:56
+msgid "days"
+msgstr ""
+
+#: templates/single-product/countdown.php:61
+msgid "hrs"
+msgstr ""
+
+#: templates/single-product/countdown.php:66
+msgid "min"
+msgstr ""
+
+#: templates/single-product/countdown.php:71
+msgid "sec"
+msgstr ""
+
+#: ticker.php:55
+msgid "Ticker - Sales Countdown Timer for WooCommerce requires WooCommerce to be active."
+msgstr ""

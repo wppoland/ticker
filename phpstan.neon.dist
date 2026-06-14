@@ -1,0 +1,18 @@
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+
+parameters:
+    level: 6
+    paths:
+        - ticker.php
+        - uninstall.php
+        - autoload.php
+        - src
+        - config
+    excludePaths:
+        - vendor/
+    bootstrapFiles:
+        - tests/phpstan/constants.php
+        - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
+    treatPhpDocTypesAsCertain: false
+    reportUnmatchedIgnoredErrors: false

@@ -1,0 +1,151 @@
+/* ==========================================================================
+   Ticker — Sale Countdown Timer (storefront)
+   Themeable, accessible, Core-Web-Vitals-native. No layout shift, no FOUC.
+   ========================================================================== */
+
+.ticker {
+	/* Themeable tokens — override in your theme to restyle. */
+	--ticker-accent: #dc2626;
+	--ticker-accent-soft: rgba(220, 38, 38, 0.1);
+	--ticker-fg: #1f2933;
+	--ticker-muted: #6b7280;
+	--ticker-surface: rgba(220, 38, 38, 0.06);
+	--ticker-border: rgba(220, 38, 38, 0.2);
+	--ticker-radius: 12px;
+	--ticker-gap: 0.4em;
+
+	margin-block: 1em 1.25em;
+	font-size: 0.95em;
+	line-height: 1.3;
+	color: var(--ticker-fg);
+}
+
+.ticker__countdown {
+	display: flow-root;
+	padding: 0.85em 1em;
+	background: var(--ticker-surface);
+	border: 1px solid var(--ticker-border);
+	border-radius: var(--ticker-radius);
+}
+
+.ticker__heading {
+	margin: 0 0 0.5em;
+	font-weight: 700;
+	font-size: clamp(0.95rem, 0.9rem + 0.4vw, 1.1rem);
+}
+
+.ticker__clock {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: var(--ticker-gap);
+}
+
+.ticker__lead {
+	font-weight: 600;
+	color: var(--ticker-muted);
+	margin-inline-end: 0.25em;
+}
+
+.ticker__units {
+	display: inline-flex;
+	align-items: baseline;
+	gap: var(--ticker-gap);
+	font-variant-numeric: tabular-nums;
+}
+
+.ticker__unit {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	min-width: 2.4ch;
+	padding: 0.25em 0.45em;
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: inset 0 0 0 1px var(--ticker-border);
+}
+
+.ticker__value {
+	font-weight: 800;
+	font-size: clamp(1.05rem, 1rem + 0.6vw, 1.4rem);
+	color: var(--ticker-accent);
+	/* Reserve a stable box so the first paint never shifts when JS fills in. */
+	min-height: 1.2em;
+	line-height: 1.2;
+}
+
+.ticker__label {
+	font-size: 0.62em;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: var(--ticker-muted);
+}
+
+.ticker__sep {
+	font-weight: 700;
+	color: var(--ticker-muted);
+	align-self: center;
+}
+
+.ticker__expired {
+	margin: 0;
+	font-weight: 700;
+	color: var(--ticker-muted);
+}
+
+.ticker__countdown.is-expired {
+	background: rgba(0, 0, 0, 0.04);
+	border-color: rgba(0, 0, 0, 0.12);
+}
+
+.ticker__scarcity {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+	margin: 0.6em 0 0;
+	font-weight: 600;
+	color: var(--ticker-accent);
+}
+
+.ticker__scarcity-dot {
+	display: inline-block;
+	inline-size: 0.6em;
+	block-size: 0.6em;
+	border-radius: 50%;
+	background: var(--ticker-accent);
+	box-shadow: 0 0 0 0 var(--ticker-accent-soft);
+	animation: ticker-pulse 2s ease-out infinite;
+}
+
+@keyframes ticker-pulse {
+	0% {
+		box-shadow: 0 0 0 0 var(--ticker-accent-soft);
+	}
+	70% {
+		box-shadow: 0 0 0 0.6em transparent;
+	}
+	100% {
+		box-shadow: 0 0 0 0 transparent;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ticker__scarcity-dot {
+		animation: none;
+	}
+}
+
+/* Dark theme awareness — opt in via the storefront's own scheme. */
+@media (prefers-color-scheme: dark) {
+	.ticker {
+		--ticker-fg: #e5e7eb;
+		--ticker-muted: #9ca3af;
+		--ticker-surface: rgba(248, 113, 113, 0.1);
+		--ticker-border: rgba(248, 113, 113, 0.28);
+		--ticker-accent: #f87171;
+	}
+
+	.ticker__unit {
+		background: rgba(255, 255, 255, 0.04);
+	}
+}

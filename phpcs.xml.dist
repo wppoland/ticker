@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<ruleset name="Ticker">
+    <description>Ticker WordPress Coding Standards</description>
+
+    <file>ticker.php</file>
+    <file>uninstall.php</file>
+    <file>autoload.php</file>
+    <file>src</file>
+    <file>config</file>
+    <file>templates</file>
+
+    <arg name="basepath" value="."/>
+    <arg name="extensions" value="php"/>
+    <arg name="colors"/>
+    <arg value="sp"/>
+
+    <config name="minimum_supported_wp_version" value="6.5"/>
+
+    <rule ref="WordPress">
+        <!-- Short array syntax is used throughout. -->
+        <exclude name="Universal.Arrays.DisallowShortArraySyntax"/>
+        <!-- Namespace declarations are not global functions, no prefix needed. -->
+        <exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedNamespaceFound"/>
+        <!-- PSR-4 class files use PascalCase filenames; WP sniff does not apply. -->
+        <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+        <exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+        <!-- Interface method names follow PSR-12 camelCase (registerHooks, etc.). -->
+        <exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid"/>
+        <!-- Plugin hooks use a namespaced `plugin/hook` naming convention. -->
+        <exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores"/>
+    </rule>
+
+    <rule ref="WordPress.WP.Capabilities">
+        <properties>
+            <property name="custom_capabilities" type="array">
+                <element value="manage_woocommerce"/>
+            </property>
+        </properties>
+    </rule>
+
+    <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+        <properties>
+            <property name="prefixes" type="array">
+                <element value="ticker"/>
+                <element value="Ticker"/>
+            </property>
+        </properties>
+    </rule>
+
+    <rule ref="WordPress.WP.I18n">
+        <properties>
+            <property name="text_domain" type="array">
+                <element value="ticker"/>
+            </property>
+        </properties>
+    </rule>
+
+    <rule ref="WordPress.Files.FileName">
+        <properties>
+            <property name="strict_class_file_names" value="false"/>
+        </properties>
+    </rule>
+</ruleset>
