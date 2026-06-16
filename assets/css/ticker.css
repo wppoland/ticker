@@ -11,7 +11,7 @@
 .ticker {
 	/* Themeable tokens — override in your theme to restyle.
 	   Fallbacks inherit the theme's own colour where a host token exists. */
-	--ticker-ember: var(--wp--preset--color--vivid-red, #e8590c);
+	--ticker-ember: var(--wp--preset--color--vivid-red, #c2410c);
 	--ticker-ember-soft: color-mix(in srgb, var(--ticker-ember) 12%, transparent);
 	--ticker-ember-line: color-mix(in srgb, var(--ticker-ember) 34%, transparent);
 	--ticker-fg: var(--wp--preset--color--contrast, #1d1f26);
