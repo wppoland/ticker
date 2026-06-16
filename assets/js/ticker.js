@@ -58,7 +58,35 @@
 		setValue( el, 'minutes', pad( minutes ) );
 		setValue( el, 'seconds', pad( seconds ) );
 
+		// Stopwatch sweep: drain the ring around the seconds unit once per
+		// minute, and snap the digit on each new second. Presentation only —
+		// the actual end moment is fixed by the server timestamp above.
+		sweep( el, seconds );
+
 		return true;
+	}
+
+	/**
+	 * Drive the seconds unit's stopwatch sweep and tick snap.
+	 *
+	 * @param {HTMLElement} el      Countdown root.
+	 * @param {number}      seconds Current seconds remaining within the minute.
+	 */
+	function sweep( el, seconds ) {
+		var unit = el.querySelector( '.ticker__unit--seconds' );
+		if ( ! unit || unit.hidden ) {
+			return;
+		}
+
+		// Ring drains as the minute empties: full at :59, gone at :00.
+		var deg = ( seconds / 60 ) * 360;
+		unit.style.setProperty( '--ticker-ring', deg.toFixed( 1 ) + 'deg' );
+
+		// Re-trigger the snap by toggling the class off then on.
+		unit.classList.remove( 'is-tick' );
+		// Force reflow so the animation restarts on identical re-adds.
+		void unit.offsetWidth;
+		unit.classList.add( 'is-tick' );
 	}
 
 	/**
