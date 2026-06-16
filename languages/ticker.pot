@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Ticker - Sales Countdown Timer for WooCommerce 0.1.0\n"
+"Project-Id-Version: Ticker - Sales Countdown Timer for WooCommerce 0.1.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ticker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-14T21:58:25+00:00\n"
+"POT-Creation-Date: 2026-06-16T20:23:13+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: ticker\n"
@@ -39,154 +39,182 @@ msgstr ""
 msgid "https://plogins.com/"
 msgstr ""
 
-#: src/Admin/Settings.php:45
+#: src/Admin/Settings.php:48
 msgid "Ticker Settings"
 msgstr ""
 
-#: src/Admin/Settings.php:46
+#: src/Admin/Settings.php:49
 msgid "Ticker"
 msgstr ""
 
-#: src/Admin/Settings.php:78
+#: src/Admin/Settings.php:81
 msgid "WooCommerce sale end date"
 msgstr ""
 
-#: src/Admin/Settings.php:79
+#: src/Admin/Settings.php:82
 msgid "Fixed campaign end date"
 msgstr ""
 
-#: src/Admin/Settings.php:90
+#: src/Admin/Settings.php:93
 msgid "Days : Hours : Minutes : Seconds"
 msgstr ""
 
-#: src/Admin/Settings.php:91
+#: src/Admin/Settings.php:94
 msgid "Hours : Minutes : Seconds"
 msgstr ""
 
-#: src/Admin/Settings.php:92
+#: src/Admin/Settings.php:95
 msgid "Hours : Minutes (compact)"
 msgstr ""
 
-#: src/Admin/Settings.php:103
+#: src/Admin/Settings.php:106
 msgid "Product summary (below price)"
 msgstr ""
 
-#: src/Admin/Settings.php:104
+#: src/Admin/Settings.php:107
 msgid "Before the add-to-cart form"
 msgstr ""
 
-#: src/Admin/Settings.php:105
+#: src/Admin/Settings.php:108
 msgid "After the add-to-cart form"
 msgstr ""
 
-#: src/Admin/Settings.php:106
+#: src/Admin/Settings.php:109
 msgid "Product meta area"
 msgstr ""
 
-#: src/Admin/Settings.php:125
-msgid "Sale Countdown Timer"
+#: src/Admin/Settings.php:128
+msgid "When the countdown runs"
 msgstr ""
 
-#: src/Admin/Settings.php:128
+#: src/Admin/Settings.php:131
 msgid "Create urgency with a live countdown"
 msgstr ""
 
-#: src/Admin/Settings.php:129
+#: src/Admin/Settings.php:132
 msgid "Show a ticking countdown to the end of a sale on your product pages. The timer is calculated on the server and counted down in the browser — no layout shift, no jQuery."
 msgstr ""
 
-#: src/Admin/Settings.php:139
+#: src/Admin/Settings.php:137
+msgid "Decide whether the timer shows and where its end time comes from."
+msgstr ""
+
+#: src/Admin/Settings.php:147
+msgid "How it reads"
+msgstr ""
+
+#: src/Admin/Settings.php:149
+msgid "Tune the wording and the level of detail shoppers see. Sensible defaults already work — change these only to match your store’s voice."
+msgstr ""
+
+#: src/Admin/Settings.php:159
+msgid "Where it appears"
+msgstr ""
+
+#: src/Admin/Settings.php:161
+msgid "Choose the spot on the single product page that fits your theme’s layout."
+msgstr ""
+
+#: src/Admin/Settings.php:170
 msgid "Enable countdown"
 msgstr ""
 
-#: src/Admin/Settings.php:140
+#: src/Admin/Settings.php:171
 msgid "Countdown source"
 msgstr ""
 
-#: src/Admin/Settings.php:141
+#: src/Admin/Settings.php:172
 msgid "Campaign end date"
 msgstr ""
 
-#: src/Admin/Settings.php:142
+#: src/Admin/Settings.php:173
 msgid "Heading"
 msgstr ""
 
-#: src/Admin/Settings.php:143
+#: src/Admin/Settings.php:174
 msgid "Time format"
 msgstr ""
 
-#: src/Admin/Settings.php:144
-msgid "Placement"
-msgstr ""
-
-#: src/Admin/Settings.php:145
+#: src/Admin/Settings.php:175
 msgid "Expired message"
 msgstr ""
 
-#: src/Admin/Settings.php:181
+#: src/Admin/Settings.php:176
+msgid "Placement"
+msgstr ""
+
+#: src/Admin/Settings.php:212
 msgid "Show the sale countdown timer on single product pages."
 msgstr ""
 
-#: src/Admin/Settings.php:183
+#: src/Admin/Settings.php:214
 msgid "Master switch. When off, no countdown is rendered anywhere."
 msgstr ""
 
-#: src/Admin/Settings.php:198
+#: src/Admin/Settings.php:229
 msgid "Where the end time comes from. The sale date is read per product; the campaign date applies store-wide and is also used as a fallback when a product has no sale end date."
 msgstr ""
 
 #. translators: %s: the site timezone string, e.g. Europe/Warsaw or UTC+2.
-#: src/Admin/Settings.php:218
+#: src/Admin/Settings.php:249
 #, php-format
 msgid "Interpreted in your site timezone (%s)."
 msgstr ""
 
-#: src/Admin/Settings.php:238
+#: src/Admin/Settings.php:269
 msgid "e.g. Hurry — offer ends soon!"
 msgstr ""
 
-#: src/Admin/Settings.php:240
+#: src/Admin/Settings.php:271
 msgid "Optional copy shown directly above the timer. Leave blank to show just the clock."
 msgstr ""
 
-#: src/Admin/Settings.php:255
-msgid "How the remaining time is displayed. Compact hides seconds for a calmer look on long campaigns."
+#: src/Admin/Settings.php:286
+msgid "How the remaining time is displayed. Compact drops seconds for a calmer look on multi-day campaigns."
 msgstr ""
 
-#: src/Admin/Settings.php:270
+#: src/Admin/Settings.php:288
+msgid "Looks like:"
+msgstr ""
+
+#: src/Admin/Settings.php:313
 msgid "Where the timer is inserted on the single product page."
 msgstr ""
 
-#: src/Admin/Settings.php:286
+#: src/Admin/Settings.php:329
 #: src/Service/CountdownService.php:144
 msgid "This sale has ended."
 msgstr ""
 
-#: src/Admin/Settings.php:288
+#: src/Admin/Settings.php:331
 msgid "Shown in place of the clock once the countdown reaches zero. Leave blank for the default message."
 msgstr ""
 
-#: templates/single-product/countdown.php:32
+#: src/Admin/Settings.php:345
+msgid "A live sale countdown for your product pages. The defaults below work out of the box — adjust only what you need."
+msgstr ""
+
+#: templates/single-product/countdown.php:38
 msgid "Sale countdown"
 msgstr ""
 
-#: templates/single-product/countdown.php:48
+#: templates/single-product/countdown.php:54
 msgid "Sale ends in"
 msgstr ""
 
-#: templates/single-product/countdown.php:52
+#: templates/single-product/countdown.php:58
 msgid "days"
 msgstr ""
 
-#: templates/single-product/countdown.php:57
+#: templates/single-product/countdown.php:63
 msgid "hrs"
 msgstr ""
 
-#: templates/single-product/countdown.php:62
+#: templates/single-product/countdown.php:68
 msgid "min"
 msgstr ""
 
-#: templates/single-product/countdown.php:67
+#: templates/single-product/countdown.php:73
 msgid "sec"
 msgstr ""
 
