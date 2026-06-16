@@ -1,17 +1,29 @@
 /* ==========================================================================
    Ticker — Sale Countdown Timer (storefront)
    Themeable, accessible, Core-Web-Vitals-native. No layout shift, no FOUC.
+
+   Craft: a sale is a fuse burning down. The seconds unit carries a stopwatch
+   sweep ring that depletes once per minute, and the live second snaps like a
+   mechanical tick — so even at a glance, with sound off, you SEE time drain.
+   Everything else stays calm instrument ink; only the seconds wear the ember.
    ========================================================================== */
 
 .ticker {
-	/* Themeable tokens — override in your theme to restyle. */
-	--ticker-accent: #dc2626;
-	--ticker-fg: #1f2933;
+	/* Themeable tokens — override in your theme to restyle.
+	   Fallbacks inherit the theme's own colour where a host token exists. */
+	--ticker-ember: var(--wp--preset--color--vivid-red, #c2410c);
+	--ticker-ember-soft: color-mix(in srgb, var(--ticker-ember) 12%, transparent);
+	--ticker-ember-line: color-mix(in srgb, var(--ticker-ember) 34%, transparent);
+	--ticker-fg: var(--wp--preset--color--contrast, #1d1f26);
 	--ticker-muted: #6b7280;
-	--ticker-surface: rgba(220, 38, 38, 0.06);
-	--ticker-border: rgba(220, 38, 38, 0.2);
-	--ticker-radius: 12px;
-	--ticker-gap: 0.4em;
+	--ticker-surface: #fff;
+	--ticker-box: #fff;
+	--ticker-box-line: rgba(29, 31, 38, 0.1);
+	--ticker-hairline: rgba(29, 31, 38, 0.08);
+	--ticker-radius: 14px;
+	--ticker-gap: 0.45em;
+	/* Ring geometry, shared by the SVG sweep and its fallback. */
+	--ticker-ring: 0deg;
 
 	margin-block: 1em 1.25em;
 	font-size: 0.95em;
@@ -21,93 +33,184 @@
 
 .ticker__countdown {
 	display: flow-root;
-	padding: 0.85em 1em;
+	padding: 0.9em 1.05em;
 	background: var(--ticker-surface);
-	border: 1px solid var(--ticker-border);
+	border: 1px solid var(--ticker-hairline);
 	border-radius: var(--ticker-radius);
+	/* A faint warm shelf — the timer sits on a sliver of its own ember. */
+	box-shadow:
+		inset 3px 0 0 0 var(--ticker-ember),
+		0 1px 2px rgba(29, 31, 38, 0.05);
 }
 
 .ticker__heading {
-	margin: 0 0 0.5em;
+	margin: 0 0 0.55em;
 	font-weight: 700;
 	font-size: clamp(0.95rem, 0.9rem + 0.4vw, 1.1rem);
+	letter-spacing: -0.01em;
 }
 
 .ticker__clock {
 	display: flex;
 	flex-wrap: wrap;
-	align-items: baseline;
+	align-items: center;
 	gap: var(--ticker-gap);
 }
 
 .ticker__lead {
 	font-weight: 600;
 	color: var(--ticker-muted);
-	margin-inline-end: 0.25em;
+	margin-inline-end: 0.15em;
 }
 
 .ticker__units {
 	display: inline-flex;
-	align-items: baseline;
+	align-items: center;
 	gap: var(--ticker-gap);
 	font-variant-numeric: tabular-nums;
 }
 
 .ticker__unit {
+	position: relative;
 	display: inline-flex;
 	flex-direction: column;
 	align-items: center;
-	min-width: 2.4ch;
-	padding: 0.25em 0.45em;
-	background: #fff;
-	border-radius: 8px;
-	box-shadow: inset 0 0 0 1px var(--ticker-border);
+	justify-content: center;
+	min-width: 2.6ch;
+	padding: 0.3em 0.5em;
+	background: var(--ticker-box);
+	border-radius: 9px;
+	box-shadow: inset 0 0 0 1px var(--ticker-box-line);
 }
 
 .ticker__value {
 	font-weight: 800;
-	font-size: clamp(1.05rem, 1rem + 0.6vw, 1.4rem);
-	color: var(--ticker-accent);
+	font-size: clamp(1.1rem, 1rem + 0.6vw, 1.45rem);
+	color: var(--ticker-fg);
+	font-variant-numeric: tabular-nums;
 	/* Reserve a stable box so the first paint never shifts when JS fills in. */
 	min-height: 1.2em;
 	line-height: 1.2;
 }
 
 .ticker__label {
-	font-size: 0.62em;
+	margin-top: 0.1em;
+	font-size: 0.6em;
+	font-weight: 600;
 	text-transform: uppercase;
-	letter-spacing: 0.06em;
+	letter-spacing: 0.08em;
 	color: var(--ticker-muted);
 }
 
 .ticker__sep {
 	font-weight: 700;
-	color: var(--ticker-muted);
+	color: var(--ticker-box-line);
 	align-self: center;
+}
+
+/* --------------------------------------------------------------------------
+   The bold move: the seconds unit becomes a stopwatch dial.
+   A conic sweep ring drains once per minute around the live digit — the
+   visible arc of a fuse burning down. The digit wears the ember and snaps
+   like a mechanical tick. This is the single moment that earns colour;
+   the day/hour/minute boxes stay calm so the dial is unmistakably the heart.
+   -------------------------------------------------------------------------- */
+.ticker__unit--seconds {
+	/* Drop the shared box chrome — this unit is a round dial, not a tile. */
+	padding: 0;
+	min-width: 0;
+	width: 3.1em;
+	height: 3.1em;
+	border-radius: 50%;
+	background: transparent;
+	box-shadow: none;
+	color: var(--ticker-ember);
+	isolation: isolate;
+	/* The draining arc: filled from 12 o'clock, depleting to empty at :00. */
+	background-image:
+		conic-gradient(
+			var(--ticker-ember) var(--ticker-ring),
+			var(--ticker-ember-line) var(--ticker-ring)
+		);
+}
+
+/* Punch the dial hollow, leaving a clean ~4px ring of the conic sweep. */
+.ticker__unit--seconds::before {
+	content: "";
+	position: absolute;
+	inset: 4px;
+	border-radius: 50%;
+	background: var(--ticker-box);
+	box-shadow: 0 1px 2px rgba(29, 31, 38, 0.06);
+	z-index: 0;
+}
+
+.ticker__unit--seconds .ticker__value {
+	position: relative;
+	z-index: 1;
+	color: var(--ticker-ember);
+	min-height: 0;
+}
+
+.ticker__unit--seconds .ticker__label {
+	position: relative;
+	z-index: 1;
+	margin-top: 0;
+	font-size: 0.5em;
+}
+
+/* The mechanical tick: each new second, the digit snaps in. */
+.ticker__unit--seconds.is-tick .ticker__value {
+	animation: ticker-tick 220ms cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+@keyframes ticker-tick {
+	0% {
+		transform: translateY(-0.14em);
+		opacity: 0.45;
+	}
+	60% {
+		transform: translateY(0.02em);
+		opacity: 1;
+	}
+	100% {
+		transform: translateY(0);
+	}
 }
 
 .ticker__expired {
 	margin: 0;
 	font-weight: 700;
-	color: var(--ticker-muted);
+	color: var(--ticker-fg);
 }
 
 .ticker__countdown.is-expired {
-	background: rgba(0, 0, 0, 0.04);
-	border-color: rgba(0, 0, 0, 0.12);
+	box-shadow:
+		inset 3px 0 0 0 var(--ticker-muted),
+		0 1px 2px rgba(29, 31, 38, 0.05);
 }
 
 /* Dark theme awareness — opt in via the storefront's own scheme. */
 @media (prefers-color-scheme: dark) {
 	.ticker {
-		--ticker-fg: #e5e7eb;
-		--ticker-muted: #9ca3af;
-		--ticker-surface: rgba(248, 113, 113, 0.1);
-		--ticker-border: rgba(248, 113, 113, 0.28);
-		--ticker-accent: #f87171;
+		--ticker-ember: #ff7a45;
+		--ticker-fg: #e8eaed;
+		--ticker-muted: #9aa1ac;
+		--ticker-surface: rgba(255, 255, 255, 0.03);
+		--ticker-box: #1b1d24;
+		--ticker-box-line: rgba(255, 255, 255, 0.1);
+		--ticker-hairline: rgba(255, 255, 255, 0.09);
 	}
 
-	.ticker__unit {
-		background: rgba(255, 255, 255, 0.04);
+	.ticker__unit--seconds::before {
+		background: var(--ticker-box);
+	}
+}
+
+/* Respect reduced motion: keep the draining ring (it's information, not
+   decoration) but drop the snap animation. */
+@media (prefers-reduced-motion: reduce) {
+	.ticker__unit--seconds.is-tick .ticker__value {
+		animation: none;
 	}
 }
