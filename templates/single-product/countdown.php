@@ -28,6 +28,12 @@ if ( null === $ticker_end_ts ) {
 }
 
 $ticker_is_expired = $ticker_end_ts <= $ticker_now;
+
+// Presentation only: seed the stopwatch sweep ring from the server clock so
+// the seconds unit paints its arc on first frame, before the script runs.
+$ticker_remaining    = max( 0, $ticker_end_ts - $ticker_now );
+$ticker_sweep_deg    = (int) round( ( ( $ticker_remaining % 60 ) / 60 ) * 360 );
+$ticker_show_seconds = 'compact' !== $ticker_format;
 ?>
 <div class="ticker" role="group" aria-label="<?php esc_attr_e( 'Sale countdown', 'ticker' ); ?>">
 	<div
@@ -62,7 +68,7 @@ $ticker_is_expired = $ticker_end_ts <= $ticker_now;
 					<span class="ticker__label"><?php esc_html_e( 'min', 'ticker' ); ?></span>
 				</span>
 				<span class="ticker__sep" aria-hidden="true"<?php echo 'compact' === $ticker_format ? ' hidden' : ''; ?>>:</span>
-				<span class="ticker__unit ticker__unit--seconds"<?php echo 'compact' === $ticker_format ? ' hidden' : ''; ?>>
+				<span class="ticker__unit ticker__unit--seconds"<?php echo $ticker_show_seconds ? ' style="--ticker-ring:' . esc_attr( (string) $ticker_sweep_deg ) . 'deg"' : ' hidden'; ?>>
 					<span class="ticker__value" data-ticker-seconds>--</span>
 					<span class="ticker__label"><?php esc_html_e( 'sec', 'ticker' ); ?></span>
 				</span>
