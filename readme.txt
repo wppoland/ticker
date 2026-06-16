@@ -4,7 +4,7 @@ Tags: woocommerce, countdown, sale, urgency, timer
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 0.1.0
+Stable tag: 0.1.1
 Requires Plugins: woocommerce
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -66,6 +66,9 @@ Its two options are removed and no tables are left behind, since Ticker never cr
 2. The settings page: countdown source, format, and placement.
 
 == Changelog ==
+
+= 0.1.1 =
+* Add `ticker/end_timestamp` filter so PRO and custom code can override the resolved countdown end time.
 
 = 0.1.0 =
 * First release. Counts down to a product's WooCommerce sale end date or a store-wide campaign date, with configurable placement, three time formats, an optional heading, and a custom sale-ended message. Server-rendered, no jQuery, no layout shift.

@@ -180,7 +180,22 @@ final class CountdownService implements HasHooks {
 			$ts = $this->global_campaign_timestamp( $settings );
 		}
 
-		return is_int( $ts ) ? $ts : null;
+		/**
+		 * Filter the resolved countdown end timestamp (UTC).
+		 *
+		 * PRO and custom code can override or supply a per-product end time.
+		 *
+		 * @param int|null             $ts       Resolved timestamp, or null when none applies.
+		 * @param \WC_Product          $product  Current product.
+		 * @param array<string, mixed> $settings Plugin settings.
+		 */
+		$filtered = apply_filters( 'ticker/end_timestamp', $ts, $product, $settings );
+
+		if ( is_int( $filtered ) ) {
+			return $filtered;
+		}
+
+		return $ts;
 	}
 
 	/**
