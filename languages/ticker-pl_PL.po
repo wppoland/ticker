@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ticker - Sales Countdown Timer for WooCommerce 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ticker\n"
-"POT-Creation-Date: 2026-06-16T20:23:13+00:00\n"
+"POT-Creation-Date: 2026-06-17T06:13:25+00:00\n"
 "PO-Revision-Date: 2026-06-15 12:00+0000\n"
 "Last-Translator: WPPoland <kontakt@wppoland.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -235,23 +235,29 @@ msgstr ""
 msgid "Sale countdown"
 msgstr "Odliczanie do końca promocji"
 
-#: templates/single-product/countdown.php:54
+#. translators: %s is the remaining sale time, e.g. "2 hrs 5 min".
+#: templates/single-product/countdown.php:69
+#, php-format
+msgid "Sale ends in %s"
+msgstr ""
+
+#: templates/single-product/countdown.php:73
 msgid "Sale ends in"
 msgstr "Promocja kończy się za"
 
-#: templates/single-product/countdown.php:58
+#: templates/single-product/countdown.php:77
 msgid "days"
 msgstr "dni"
 
-#: templates/single-product/countdown.php:63
+#: templates/single-product/countdown.php:82
 msgid "hrs"
 msgstr "godz."
 
-#: templates/single-product/countdown.php:68
+#: templates/single-product/countdown.php:87
 msgid "min"
 msgstr "min"
 
-#: templates/single-product/countdown.php:73
+#: templates/single-product/countdown.php:92
 msgid "sec"
 msgstr "sek."
 

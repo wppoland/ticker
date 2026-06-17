@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-16T20:23:13+00:00\n"
+"POT-Creation-Date: 2026-06-17T06:13:25+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: ticker\n"
@@ -198,23 +198,29 @@ msgstr ""
 msgid "Sale countdown"
 msgstr ""
 
-#: templates/single-product/countdown.php:54
-msgid "Sale ends in"
-msgstr ""
-
-#: templates/single-product/countdown.php:58
-msgid "days"
-msgstr ""
-
-#: templates/single-product/countdown.php:63
-msgid "hrs"
-msgstr ""
-
-#: templates/single-product/countdown.php:68
-msgid "min"
+#. translators: %s is the remaining sale time, e.g. "2 hrs 5 min".
+#: templates/single-product/countdown.php:69
+#, php-format
+msgid "Sale ends in %s"
 msgstr ""
 
 #: templates/single-product/countdown.php:73
+msgid "Sale ends in"
+msgstr ""
+
+#: templates/single-product/countdown.php:77
+msgid "days"
+msgstr ""
+
+#: templates/single-product/countdown.php:82
+msgid "hrs"
+msgstr ""
+
+#: templates/single-product/countdown.php:87
+msgid "min"
+msgstr ""
+
+#: templates/single-product/countdown.php:92
 msgid "sec"
 msgstr ""
 
