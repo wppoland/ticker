@@ -50,9 +50,28 @@ $ticker_show_seconds = 'compact' !== $ticker_format;
 			<?php echo esc_html( $ticker_expired_message ); ?>
 		</p>
 
-		<div class="ticker__clock" aria-live="off"<?php echo $ticker_is_expired ? ' hidden' : ''; ?>>
+		<?php
+		/*
+		 * The visual timer ticks every second; announcing it would create
+		 * per-second screen-reader noise. So the visible digits are hidden from
+		 * assistive tech (aria-hidden) and a separate polite live region
+		 * (.ticker__sr-status, a sibling of the clock so it survives the clock
+		 * being hidden on expiry) announces only on a meaningful change: each
+		 * minute boundary, and on expiry. %s is the remaining-time phrase, e.g.
+		 * "2 hrs 5 min", assembled by the script from the unit labels.
+		 */
+		?>
+		<span
+			class="ticker__sr-status"
+			role="status"
+			aria-live="polite"
+			data-ticker-status
+			data-ticker-announce-template="<?php echo esc_attr( /* translators: %s is the remaining sale time, e.g. "2 hrs 5 min". */ __( 'Sale ends in %s', 'ticker' ) ); ?>"
+		></span>
+
+		<div class="ticker__clock"<?php echo $ticker_is_expired ? ' hidden' : ''; ?>>
 			<span class="ticker__lead"><?php esc_html_e( 'Sale ends in', 'ticker' ); ?></span>
-			<span class="ticker__units" role="timer" aria-live="polite">
+			<span class="ticker__units" role="timer" aria-hidden="true">
 				<span class="ticker__unit ticker__unit--days"<?php echo 'dhms' === $ticker_format ? '' : ' hidden'; ?>>
 					<span class="ticker__value" data-ticker-days>--</span>
 					<span class="ticker__label"><?php esc_html_e( 'days', 'ticker' ); ?></span>

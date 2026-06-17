@@ -58,12 +58,67 @@
 		setValue( el, 'minutes', pad( minutes ) );
 		setValue( el, 'seconds', pad( seconds ) );
 
+		// Screen-reader status: announce only when the minute (or coarser unit)
+		// changes — never per second — so assistive tech isn't flooded.
+		announce( el, days, hours, minutes, format );
+
 		// Stopwatch sweep: drain the ring around the seconds unit once per
 		// minute, and snap the digit on each new second. Presentation only —
 		// the actual end moment is fixed by the server timestamp above.
 		sweep( el, seconds );
 
 		return true;
+	}
+
+	/**
+	 * Update the polite live region, but only on a meaningful (>= 1 minute)
+	 * change. The visible digits are aria-hidden and tick every second; this
+	 * coarse message is what screen readers actually hear.
+	 *
+	 * @param {HTMLElement} el      Countdown root.
+	 * @param {number}      days    Whole days remaining.
+	 * @param {number}      hours   Whole hours remaining within the day/run.
+	 * @param {number}      minutes Whole minutes remaining within the hour.
+	 * @param {string}      format  Display format (dhms|hms|compact).
+	 */
+	function announce( el, days, hours, minutes, format ) {
+		var status = el.querySelector( '[data-ticker-status]' );
+		if ( ! status ) {
+			return;
+		}
+
+		// Re-announce only when the minute boundary (or coarser) changes.
+		var stamp = days + ':' + hours + ':' + minutes;
+		if ( status.getAttribute( 'data-ticker-stamp' ) === stamp ) {
+			return;
+		}
+		status.setAttribute( 'data-ticker-stamp', stamp );
+
+		// Reuse the already-translated unit labels from the visible markup, so
+		// the spoken phrase needs no extra strings beyond the template.
+		var parts = [];
+		if ( 'dhms' === format && days > 0 ) {
+			parts.push( days + ' ' + labelFor( el, 'days' ) );
+		}
+		if ( hours > 0 ) {
+			parts.push( hours + ' ' + labelFor( el, 'hours' ) );
+		}
+		parts.push( minutes + ' ' + labelFor( el, 'minutes' ) );
+
+		var template = status.getAttribute( 'data-ticker-announce-template' ) || '%s';
+		status.textContent = template.replace( '%s', parts.join( ' ' ) );
+	}
+
+	/**
+	 * Read a unit's already-translated label text from the visible markup.
+	 *
+	 * @param {HTMLElement} el   Countdown root.
+	 * @param {string}      unit Unit name.
+	 * @return {string} Trimmed label, or the unit name as a fallback.
+	 */
+	function labelFor( el, unit ) {
+		var node = el.querySelector( '.ticker__unit--' + unit + ' .ticker__label' );
+		return node ? node.textContent.trim() : unit;
 	}
 
 	/**
@@ -113,6 +168,13 @@
 			return;
 		}
 		el.classList.add( 'is-expired' );
+
+		// Announce expiry once through the polite status (a sibling of the
+		// clock, so it stays in the tree after the clock is hidden below).
+		var status = el.querySelector( '[data-ticker-status]' );
+		if ( status ) {
+			status.textContent = el.getAttribute( 'data-ticker-expired-text' ) || '';
+		}
 
 		var clock = el.querySelector( '.ticker__clock' );
 		if ( clock ) {
