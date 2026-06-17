@@ -65,6 +65,10 @@ Its two options are removed and no tables are left behind, since Ticker never cr
 1. The sale countdown timer on a product page.
 2. The settings page: countdown source, format, and placement.
 
+== External Services ==
+
+Ticker does not connect to any external services. It resolves the countdown end time entirely on your own server from each product's WooCommerce "Sale price dates" or a store-wide campaign date you set, and its `assets/js/ticker.js` script only formats that time in the browser, with no requests to any third party. Your settings are stored in the `ticker_settings` and `ticker_db_version` options in your site's `wp_options` table; no custom tables are created and no data leaves your site.
+
 == Changelog ==
 
 = 0.1.1 =
