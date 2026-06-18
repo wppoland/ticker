@@ -42,6 +42,15 @@ Source code and issue tracker live on GitHub: https://github.com/wppoland/ticker
 
 == Frequently Asked Questions ==
 
+= Documentation and links =
+
+* **Documentation** - https://plogins.com/ticker/docs/
+* **Plugin page** - https://plogins.com/ticker/
+* **Source code** - https://github.com/wppoland/ticker
+* **Bug reports and feature requests** - https://github.com/wppoland/ticker/issues
+* **Discussions and questions** - https://github.com/wppoland/ticker/discussions
+
+
 = Does Ticker need WooCommerce? =
 Yes. It hooks into WooCommerce product pages and sale dates, and needs WooCommerce 8.0 or later. If WooCommerce isn't active, Ticker stays quiet and shows an admin notice.
 
