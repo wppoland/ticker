@@ -1,5 +1,5 @@
 === Ticker - Sales Countdown Timer for WooCommerce ===
-Contributors: wppoland
+Contributors: motylanogha
 Tags: woocommerce, countdown, sale, urgency, timer
 Requires at least: 6.5
 Tested up to: 7.0
