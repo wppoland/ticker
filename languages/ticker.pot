@@ -92,7 +92,7 @@ msgid "Create urgency with a live countdown"
 msgstr ""
 
 #: src/Admin/Settings.php:132
-msgid "Show a ticking countdown to the end of a sale on your product pages. The timer is calculated on the server and counted down in the browser — no layout shift, no jQuery."
+msgid "Show a ticking countdown to the end of a sale on your product pages. The timer is calculated on the server and counted down in the browser, no layout shift, no jQuery."
 msgstr ""
 
 #: src/Admin/Settings.php:137
@@ -104,7 +104,7 @@ msgid "How it reads"
 msgstr ""
 
 #: src/Admin/Settings.php:149
-msgid "Tune the wording and the level of detail shoppers see. Sensible defaults already work — change these only to match your store’s voice."
+msgid "Tune the wording and the level of detail shoppers see. Sensible defaults already work, change these only to match your store’s voice."
 msgstr ""
 
 #: src/Admin/Settings.php:159
@@ -161,7 +161,7 @@ msgid "Interpreted in your site timezone (%s)."
 msgstr ""
 
 #: src/Admin/Settings.php:274
-msgid "e.g. Hurry — offer ends soon!"
+msgid "e.g. Hurry, offer ends soon!"
 msgstr ""
 
 #: src/Admin/Settings.php:276
@@ -190,7 +190,7 @@ msgid "Shown in place of the clock once the countdown reaches zero. Leave blank 
 msgstr ""
 
 #: src/Admin/Settings.php:350
-msgid "A live sale countdown for your product pages. The defaults below work out of the box — adjust only what you need."
+msgid "A live sale countdown for your product pages. The defaults below work out of the box, adjust only what you need."
 msgstr ""
 
 #: templates/single-product/countdown.php:40

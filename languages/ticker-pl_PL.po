@@ -102,11 +102,11 @@ msgstr "Buduj poczucie pilności dzięki odliczaniu na żywo"
 #: src/Admin/Settings.php:132
 msgid ""
 "Show a ticking countdown to the end of a sale on your product pages. The "
-"timer is calculated on the server and counted down in the browser — no "
+"timer is calculated on the server and counted down in the browser, no "
 "layout shift, no jQuery."
 msgstr ""
 "Wyświetlaj tykający zegar odliczający do końca promocji na stronach "
-"produktów. Zegar jest obliczany na serwerze i odliczany w przeglądarce — bez "
+"produktów. Zegar jest obliczany na serwerze i odliczany w przeglądarce, bez "
 "przesunięć układu, bez jQuery."
 
 #: src/Admin/Settings.php:137
@@ -120,7 +120,7 @@ msgstr ""
 #: src/Admin/Settings.php:149
 msgid ""
 "Tune the wording and the level of detail shoppers see. Sensible defaults "
-"already work — change these only to match your store’s voice."
+"already work, change these only to match your store’s voice."
 msgstr ""
 
 #: src/Admin/Settings.php:159
@@ -188,8 +188,8 @@ msgid "Interpreted in your site timezone (%s)."
 msgstr "Interpretowane w strefie czasowej Twojej witryny (%s)."
 
 #: src/Admin/Settings.php:269
-msgid "e.g. Hurry — offer ends soon!"
-msgstr "np. Pospiesz się — oferta wkrótce się kończy!"
+msgid "e.g. Hurry, offer ends soon!"
+msgstr "np. Pospiesz się, oferta wkrótce się kończy!"
 
 #: src/Admin/Settings.php:271
 msgid ""
@@ -228,7 +228,7 @@ msgstr ""
 #: src/Admin/Settings.php:345
 msgid ""
 "A live sale countdown for your product pages. The defaults below work out of "
-"the box — adjust only what you need."
+"the box, adjust only what you need."
 msgstr ""
 
 #: templates/single-product/countdown.php:38

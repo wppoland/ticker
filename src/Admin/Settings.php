@@ -130,7 +130,7 @@ final class Settings implements HasHooks {
 				echo '<div class="ticker-settings__intro">';
 				echo '<h2>' . esc_html__( 'Create urgency with a live countdown', 'ticker' ) . '</h2>';
 				echo '<p>' . esc_html__(
-					'Show a ticking countdown to the end of a sale on your product pages. The timer is calculated on the server and counted down in the browser — no layout shift, no jQuery.',
+					'Show a ticking countdown to the end of a sale on your product pages. The timer is calculated on the server and counted down in the browser, no layout shift, no jQuery.',
 					'ticker',
 				) . '</p>';
 				echo '</div>';
@@ -147,7 +147,7 @@ final class Settings implements HasHooks {
 			__( 'How it reads', 'ticker' ),
 			static function (): void {
 				echo '<p class="ticker-settings__section-note">' . esc_html__(
-					'Tune the wording and the level of detail shoppers see. Sensible defaults already work — change these only to match your store’s voice.',
+					'Tune the wording and the level of detail shoppers see. Sensible defaults already work, change these only to match your store’s voice.',
 					'ticker',
 				) . '</p>';
 			},
@@ -271,7 +271,7 @@ final class Settings implements HasHooks {
 			name="<?php echo esc_attr( self::OPTION ); ?>[heading]"
 			value="<?php echo esc_attr( $value ); ?>"
 			class="regular-text"
-			placeholder="<?php esc_attr_e( 'e.g. Hurry — offer ends soon!', 'ticker' ); ?>"
+			placeholder="<?php esc_attr_e( 'e.g. Hurry, offer ends soon!', 'ticker' ); ?>"
 		/>
 		<p class="description"><?php esc_html_e( 'Optional copy shown directly above the timer. Leave blank to show just the clock.', 'ticker' ); ?></p>
 		<?php
@@ -347,7 +347,7 @@ final class Settings implements HasHooks {
 		?>
 		<div class="wrap ticker-settings">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-			<p class="ticker-settings__lede"><?php esc_html_e( 'A live sale countdown for your product pages. The defaults below work out of the box — adjust only what you need.', 'ticker' ); ?></p>
+			<p class="ticker-settings__lede"><?php esc_html_e( 'A live sale countdown for your product pages. The defaults below work out of the box, adjust only what you need.', 'ticker' ); ?></p>
 			<form method="post" action="options.php">
 				<?php
 				settings_fields( self::PAGE );
