@@ -4,7 +4,7 @@ includes:
 parameters:
     level: 6
     paths:
-        - ticker.php
+        - plogins-ticker.php
         - uninstall.php
         - autoload.php
         - src

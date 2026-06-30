@@ -1,10 +1,10 @@
-=== Ticker - Sales Countdown Timer for WooCommerce ===
+=== Plogins Ticker for WooCommerce ===
 Contributors: motylanogha
 Tags: woocommerce, countdown, sale, urgency, timer
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 0.1.2
+Stable tag: 0.1.3
 Requires Plugins: woocommerce
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -30,7 +30,7 @@ The countdown is built around the WooCommerce sale you already run, so there is 
 * No custom database tables. Settings sit in `wp_options` and are deleted when you remove the plugin.
 * Declares HPOS and Cart/Checkout Blocks compatibility.
 
-Source code and issue tracker live on GitHub: https://github.com/wppoland/ticker
+Source code and issue tracker live on GitHub: https://github.com/wppoland/plogins-ticker
 
 == Installation ==
 
@@ -44,11 +44,10 @@ Source code and issue tracker live on GitHub: https://github.com/wppoland/ticker
 
 = Documentation and links =
 
-* **Documentation** - https://plogins.com/ticker/docs/
-* **Plugin page** - https://plogins.com/ticker/
-* **Source code** - https://github.com/wppoland/ticker
-* **Bug reports and feature requests** - https://github.com/wppoland/ticker/issues
-* **Discussions and questions** - https://github.com/wppoland/ticker/discussions
+* **Documentation** - https://plogins.com/plogins-ticker/docs/
+* **Plugin page** - https://plogins.com/plogins-ticker/
+* **Source code** - https://github.com/wppoland/plogins-ticker
+* **Bug reports and feature requests** - https://github.com/wppoland/plogins-ticker/issues
 
 
 = Does Ticker need WooCommerce? =
@@ -79,6 +78,9 @@ Its two options are removed and no tables are left behind, since Ticker never cr
 Ticker does not connect to any external services. It resolves the countdown end time entirely on your own server from each product's WooCommerce "Sale price dates" or a store-wide campaign date you set, and its `assets/js/ticker.js` script only formats that time in the browser, with no requests to any third party. Your settings are stored in the `ticker_settings` and `ticker_db_version` options in your site's `wp_options` table; no custom tables are created and no data leaves your site.
 
 == Changelog ==
+
+= 0.1.3 =
+* Renamed to Plogins Ticker for WooCommerce for a more distinctive plugin name.
 
 = 0.1.2 =
 * Add `ticker/countdown_rendered` action and `data-ticker-product-id` on the countdown markup for PRO analytics.

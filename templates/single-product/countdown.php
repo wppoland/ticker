@@ -37,7 +37,7 @@ $ticker_remaining    = max( 0, $ticker_end_ts - $ticker_now );
 $ticker_sweep_deg    = (int) round( ( ( $ticker_remaining % 60 ) / 60 ) * 360 );
 $ticker_show_seconds = 'compact' !== $ticker_format;
 ?>
-<div class="ticker" role="group" aria-label="<?php esc_attr_e( 'Sale countdown', 'ticker' ); ?>">
+<div class="ticker" role="group" aria-label="<?php esc_attr_e( 'Sale countdown', 'plogins-ticker' ); ?>">
 	<div
 		class="ticker__countdown<?php echo $ticker_is_expired ? ' is-expired' : ''; ?>"
 		data-ticker-end="<?php echo esc_attr( (string) $ticker_end_ts ); ?>"
@@ -71,30 +71,30 @@ $ticker_show_seconds = 'compact' !== $ticker_format;
 			role="status"
 			aria-live="polite"
 			data-ticker-status
-			data-ticker-announce-template="<?php echo esc_attr( /* translators: %s is the remaining sale time, e.g. "2 hrs 5 min". */ __( 'Sale ends in %s', 'ticker' ) ); ?>"
+			data-ticker-announce-template="<?php echo esc_attr( /* translators: %s is the remaining sale time, e.g. "2 hrs 5 min". */ __( 'Sale ends in %s', 'plogins-ticker' ) ); ?>"
 		></span>
 
 		<div class="ticker__clock"<?php echo $ticker_is_expired ? ' hidden' : ''; ?>>
-			<span class="ticker__lead"><?php esc_html_e( 'Sale ends in', 'ticker' ); ?></span>
+			<span class="ticker__lead"><?php esc_html_e( 'Sale ends in', 'plogins-ticker' ); ?></span>
 			<span class="ticker__units" role="timer" aria-hidden="true">
 				<span class="ticker__unit ticker__unit--days"<?php echo 'dhms' === $ticker_format ? '' : ' hidden'; ?>>
 					<span class="ticker__value" data-ticker-days>--</span>
-					<span class="ticker__label"><?php esc_html_e( 'days', 'ticker' ); ?></span>
+					<span class="ticker__label"><?php esc_html_e( 'days', 'plogins-ticker' ); ?></span>
 				</span>
 				<span class="ticker__sep" aria-hidden="true"<?php echo 'dhms' === $ticker_format ? '' : ' hidden'; ?>>:</span>
 				<span class="ticker__unit ticker__unit--hours">
 					<span class="ticker__value" data-ticker-hours>--</span>
-					<span class="ticker__label"><?php esc_html_e( 'hrs', 'ticker' ); ?></span>
+					<span class="ticker__label"><?php esc_html_e( 'hrs', 'plogins-ticker' ); ?></span>
 				</span>
 				<span class="ticker__sep" aria-hidden="true">:</span>
 				<span class="ticker__unit ticker__unit--minutes">
 					<span class="ticker__value" data-ticker-minutes>--</span>
-					<span class="ticker__label"><?php esc_html_e( 'min', 'ticker' ); ?></span>
+					<span class="ticker__label"><?php esc_html_e( 'min', 'plogins-ticker' ); ?></span>
 				</span>
 				<span class="ticker__sep" aria-hidden="true"<?php echo 'compact' === $ticker_format ? ' hidden' : ''; ?>>:</span>
 				<span class="ticker__unit ticker__unit--seconds"<?php echo $ticker_show_seconds ? ' style="--ticker-ring:' . esc_attr( (string) $ticker_sweep_deg ) . 'deg"' : ' hidden'; ?>>
 					<span class="ticker__value" data-ticker-seconds>--</span>
-					<span class="ticker__label"><?php esc_html_e( 'sec', 'ticker' ); ?></span>
+					<span class="ticker__label"><?php esc_html_e( 'sec', 'plogins-ticker' ); ?></span>
 				</span>
 			</span>
 		</div>

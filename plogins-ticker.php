@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name:       Ticker - Sales Countdown Timer for WooCommerce
- * Plugin URI:        https://plogins.com/ticker/
+ * Plugin Name:       Plogins Ticker for WooCommerce
+ * Plugin URI:        https://plogins.com/plogins-ticker/
  * Description:        Show a live sale countdown timer on WooCommerce product pages to create urgency and turn browsers into buyers.
- * Version:           0.1.2
+ * Version:           0.1.3
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  woocommerce
@@ -11,7 +11,7 @@
  * Author URI:        https://wppoland.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       ticker
+ * Text Domain:       plogins-ticker
  * Domain Path:       /languages
  * WC requires at least: 8.0
  *
@@ -24,7 +24,7 @@ namespace Ticker;
 
 defined( 'ABSPATH' ) || exit;
 
-const VERSION     = '0.1.2';
+const VERSION     = '0.1.3';
 const PLUGIN_FILE = __FILE__;
 const PLUGIN_DIR  = __DIR__;
 
@@ -52,7 +52,7 @@ add_action(
 				'admin_notices',
 				static function (): void {
 					echo '<div class="notice notice-error"><p>';
-					echo esc_html__( 'Ticker - Sales Countdown Timer for WooCommerce requires WooCommerce to be active.', 'ticker' );
+					echo esc_html__( 'Ticker - Sales Countdown Timer for WooCommerce requires WooCommerce to be active.', 'plogins-ticker' );
 					echo '</p></div>';
 				}
 			);

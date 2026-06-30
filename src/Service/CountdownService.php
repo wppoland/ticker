@@ -152,7 +152,7 @@ final class CountdownService implements HasHooks {
 
 		$expired_message = (string) ( $settings['expired_message'] ?? '' );
 		if ( '' === $expired_message ) {
-			$expired_message = __( 'This sale has ended.', 'ticker' );
+			$expired_message = __( 'This sale has ended.', 'plogins-ticker' );
 		}
 
 		ob_start();

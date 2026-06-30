@@ -12,7 +12,7 @@ msgstr ""
 "POT-Creation-Date: 2026-06-20T06:44:30+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
-"X-Domain: ticker\n"
+"X-Domain: plogins-ticker\n"
 
 #. Plugin Name of the plugin
 #: ticker.php

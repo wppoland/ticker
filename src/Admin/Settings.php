@@ -45,8 +45,8 @@ final class Settings implements HasHooks {
 	public function add_menu_page(): void {
 		add_submenu_page(
 			'woocommerce',
-			__( 'Ticker Settings', 'ticker' ),
-			__( 'Ticker', 'ticker' ),
+			__( 'Ticker Settings', 'plogins-ticker' ),
+			__( 'Ticker', 'plogins-ticker' ),
 			'manage_woocommerce',
 			self::PAGE,
 			array( $this, 'render_page' ),
@@ -78,8 +78,8 @@ final class Settings implements HasHooks {
 	 */
 	private function source_choices(): array {
 		return array(
-			'sale'     => __( 'WooCommerce sale end date', 'ticker' ),
-			'campaign' => __( 'Fixed campaign end date', 'ticker' ),
+			'sale'     => __( 'WooCommerce sale end date', 'plogins-ticker' ),
+			'campaign' => __( 'Fixed campaign end date', 'plogins-ticker' ),
 		);
 	}
 
@@ -90,9 +90,9 @@ final class Settings implements HasHooks {
 	 */
 	private function format_choices(): array {
 		return array(
-			'dhms'    => __( 'Days : Hours : Minutes : Seconds', 'ticker' ),
-			'hms'     => __( 'Hours : Minutes : Seconds', 'ticker' ),
-			'compact' => __( 'Hours : Minutes (compact)', 'ticker' ),
+			'dhms'    => __( 'Days : Hours : Minutes : Seconds', 'plogins-ticker' ),
+			'hms'     => __( 'Hours : Minutes : Seconds', 'plogins-ticker' ),
+			'compact' => __( 'Hours : Minutes (compact)', 'plogins-ticker' ),
 		);
 	}
 
@@ -103,10 +103,10 @@ final class Settings implements HasHooks {
 	 */
 	private function placement_choices(): array {
 		return array(
-			'summary'      => __( 'Product summary (below price)', 'ticker' ),
-			'before_cart'  => __( 'Before the add-to-cart form', 'ticker' ),
-			'after_cart'   => __( 'After the add-to-cart form', 'ticker' ),
-			'product_meta' => __( 'Product meta area', 'ticker' ),
+			'summary'      => __( 'Product summary (below price)', 'plogins-ticker' ),
+			'before_cart'  => __( 'Before the add-to-cart form', 'plogins-ticker' ),
+			'after_cart'   => __( 'After the add-to-cart form', 'plogins-ticker' ),
+			'product_meta' => __( 'Product meta area', 'plogins-ticker' ),
 		);
 	}
 
@@ -125,18 +125,18 @@ final class Settings implements HasHooks {
 
 		add_settings_section(
 			self::SECTION_BEHAVIOUR,
-			__( 'When the countdown runs', 'ticker' ),
+			__( 'When the countdown runs', 'plogins-ticker' ),
 			static function (): void {
 				echo '<div class="ticker-settings__intro">';
-				echo '<h2>' . esc_html__( 'Create urgency with a live countdown', 'ticker' ) . '</h2>';
+				echo '<h2>' . esc_html__( 'Create urgency with a live countdown', 'plogins-ticker' ) . '</h2>';
 				echo '<p>' . esc_html__(
 					'Show a ticking countdown to the end of a sale on your product pages. The timer is calculated on the server and counted down in the browser, no layout shift, no jQuery.',
-					'ticker',
+					'plogins-ticker',
 				) . '</p>';
 				echo '</div>';
 				echo '<p class="ticker-settings__section-note">' . esc_html__(
 					'Decide whether the timer shows and where its end time comes from.',
-					'ticker',
+					'plogins-ticker',
 				) . '</p>';
 			},
 			self::PAGE,
@@ -144,11 +144,11 @@ final class Settings implements HasHooks {
 
 		add_settings_section(
 			self::SECTION_APPEARANCE,
-			__( 'How it reads', 'ticker' ),
+			__( 'How it reads', 'plogins-ticker' ),
 			static function (): void {
 				echo '<p class="ticker-settings__section-note">' . esc_html__(
 					'Tune the wording and the level of detail shoppers see. Sensible defaults already work, change these only to match your store’s voice.',
-					'ticker',
+					'plogins-ticker',
 				) . '</p>';
 			},
 			self::PAGE,
@@ -156,24 +156,24 @@ final class Settings implements HasHooks {
 
 		add_settings_section(
 			self::SECTION_PLACEMENT,
-			__( 'Where it appears', 'ticker' ),
+			__( 'Where it appears', 'plogins-ticker' ),
 			static function (): void {
 				echo '<p class="ticker-settings__section-note">' . esc_html__(
 					'Choose the spot on the single product page that fits your theme’s layout.',
-					'ticker',
+					'plogins-ticker',
 				) . '</p>';
 			},
 			self::PAGE,
 		);
 
 		$fields = array(
-			'enabled'         => array( __( 'Enable countdown', 'ticker' ), self::SECTION_BEHAVIOUR ),
-			'source'          => array( __( 'Countdown source', 'ticker' ), self::SECTION_BEHAVIOUR ),
-			'campaign_end'    => array( __( 'Campaign end date', 'ticker' ), self::SECTION_BEHAVIOUR ),
-			'heading'         => array( __( 'Heading', 'ticker' ), self::SECTION_APPEARANCE ),
-			'format'          => array( __( 'Time format', 'ticker' ), self::SECTION_APPEARANCE ),
-			'expired_message' => array( __( 'Expired message', 'ticker' ), self::SECTION_APPEARANCE ),
-			'placement'       => array( __( 'Placement', 'ticker' ), self::SECTION_PLACEMENT ),
+			'enabled'         => array( __( 'Enable countdown', 'plogins-ticker' ), self::SECTION_BEHAVIOUR ),
+			'source'          => array( __( 'Countdown source', 'plogins-ticker' ), self::SECTION_BEHAVIOUR ),
+			'campaign_end'    => array( __( 'Campaign end date', 'plogins-ticker' ), self::SECTION_BEHAVIOUR ),
+			'heading'         => array( __( 'Heading', 'plogins-ticker' ), self::SECTION_APPEARANCE ),
+			'format'          => array( __( 'Time format', 'plogins-ticker' ), self::SECTION_APPEARANCE ),
+			'expired_message' => array( __( 'Expired message', 'plogins-ticker' ), self::SECTION_APPEARANCE ),
+			'placement'       => array( __( 'Placement', 'plogins-ticker' ), self::SECTION_PLACEMENT ),
 		);
 
 		foreach ( $fields as $id => $field ) {
@@ -214,9 +214,9 @@ final class Settings implements HasHooks {
 		?>
 		<label for="ticker_enabled">
 			<input type="checkbox" id="ticker_enabled" name="<?php echo esc_attr( self::OPTION ); ?>[enabled]" value="1" <?php checked( $checked, true ); ?> />
-			<?php esc_html_e( 'Show the sale countdown timer on single product pages.', 'ticker' ); ?>
+			<?php esc_html_e( 'Show the sale countdown timer on single product pages.', 'plogins-ticker' ); ?>
 		</label>
-		<p class="description"><?php esc_html_e( 'Master switch. When off, no countdown is rendered anywhere.', 'ticker' ); ?></p>
+		<p class="description"><?php esc_html_e( 'Master switch. When off, no countdown is rendered anywhere.', 'plogins-ticker' ); ?></p>
 		<?php
 	}
 
@@ -231,7 +231,7 @@ final class Settings implements HasHooks {
 				<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $current, $value ); ?>><?php echo esc_html( $label ); ?></option>
 			<?php endforeach; ?>
 		</select>
-		<p class="description"><?php esc_html_e( 'Where the end time comes from. The sale date is read per product; the campaign date applies store-wide and is also used as a fallback when a product has no sale end date.', 'ticker' ); ?></p>
+		<p class="description"><?php esc_html_e( 'Where the end time comes from. The sale date is read per product; the campaign date applies store-wide and is also used as a fallback when a product has no sale end date.', 'plogins-ticker' ); ?></p>
 		<?php
 	}
 
@@ -251,7 +251,7 @@ final class Settings implements HasHooks {
 			<?php
 			printf(
 				/* translators: %s: the site timezone string, e.g. Europe/Warsaw or UTC+2. */
-				esc_html__( 'Interpreted in your site timezone (%s).', 'ticker' ),
+				esc_html__( 'Interpreted in your site timezone (%s).', 'plogins-ticker' ),
 				esc_html( wp_timezone_string() ),
 			);
 			?>
@@ -271,9 +271,9 @@ final class Settings implements HasHooks {
 			name="<?php echo esc_attr( self::OPTION ); ?>[heading]"
 			value="<?php echo esc_attr( $value ); ?>"
 			class="regular-text"
-			placeholder="<?php esc_attr_e( 'e.g. Hurry, offer ends soon!', 'ticker' ); ?>"
+			placeholder="<?php esc_attr_e( 'e.g. Hurry, offer ends soon!', 'plogins-ticker' ); ?>"
 		/>
-		<p class="description"><?php esc_html_e( 'Optional copy shown directly above the timer. Leave blank to show just the clock.', 'ticker' ); ?></p>
+		<p class="description"><?php esc_html_e( 'Optional copy shown directly above the timer. Leave blank to show just the clock.', 'plogins-ticker' ); ?></p>
 		<?php
 	}
 
@@ -288,9 +288,9 @@ final class Settings implements HasHooks {
 				<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $current, $value ); ?>><?php echo esc_html( $label ); ?></option>
 			<?php endforeach; ?>
 		</select>
-		<p class="description"><?php esc_html_e( 'How the remaining time is displayed. Compact drops seconds for a calmer look on multi-day campaigns.', 'ticker' ); ?></p>
+		<p class="description"><?php esc_html_e( 'How the remaining time is displayed. Compact drops seconds for a calmer look on multi-day campaigns.', 'plogins-ticker' ); ?></p>
 		<p class="ticker-settings__example">
-			<span class="ticker-settings__example-label"><?php esc_html_e( 'Looks like:', 'ticker' ); ?></span>
+			<span class="ticker-settings__example-label"><?php esc_html_e( 'Looks like:', 'plogins-ticker' ); ?></span>
 			<?php
 			$samples = array(
 				'dhms'    => '02 : 18 : 45 : 09',
@@ -315,7 +315,7 @@ final class Settings implements HasHooks {
 				<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $current, $value ); ?>><?php echo esc_html( $label ); ?></option>
 			<?php endforeach; ?>
 		</select>
-		<p class="description"><?php esc_html_e( 'Where the timer is inserted on the single product page.', 'ticker' ); ?></p>
+		<p class="description"><?php esc_html_e( 'Where the timer is inserted on the single product page.', 'plogins-ticker' ); ?></p>
 		<?php
 	}
 
@@ -331,9 +331,9 @@ final class Settings implements HasHooks {
 			name="<?php echo esc_attr( self::OPTION ); ?>[expired_message]"
 			value="<?php echo esc_attr( $value ); ?>"
 			class="regular-text"
-			placeholder="<?php esc_attr_e( 'This sale has ended.', 'ticker' ); ?>"
+			placeholder="<?php esc_attr_e( 'This sale has ended.', 'plogins-ticker' ); ?>"
 		/>
-		<p class="description"><?php esc_html_e( 'Shown in place of the clock once the countdown reaches zero. Leave blank for the default message.', 'ticker' ); ?></p>
+		<p class="description"><?php esc_html_e( 'Shown in place of the clock once the countdown reaches zero. Leave blank for the default message.', 'plogins-ticker' ); ?></p>
 		<?php
 	}
 
@@ -347,7 +347,7 @@ final class Settings implements HasHooks {
 		?>
 		<div class="wrap ticker-settings">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-			<p class="ticker-settings__lede"><?php esc_html_e( 'A live sale countdown for your product pages. The defaults below work out of the box, adjust only what you need.', 'ticker' ); ?></p>
+			<p class="ticker-settings__lede"><?php esc_html_e( 'A live sale countdown for your product pages. The defaults below work out of the box, adjust only what you need.', 'plogins-ticker' ); ?></p>
 			<form method="post" action="options.php">
 				<?php
 				settings_fields( self::PAGE );
